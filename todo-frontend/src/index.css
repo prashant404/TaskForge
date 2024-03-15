@@ -1,13 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Angkor&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  background-image: url('./assets/cool-background.svg');
+  background-size: cover; /* Adjust background size as needed */
+  background-repeat: no-repeat; /* Prevent background from repeating */
+}
+
+/* Adjust background for smaller screens */
+@media (max-width: 768px) {
+  body {
+    background-size: contain; /* Adjust background size for smaller screens */
+  }
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.logo-text {
+  font-family: "Angkor", serif;
+  font-weight: 400;
+  font-style: normal;
 }

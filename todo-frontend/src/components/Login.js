@@ -1,10 +1,10 @@
 // Login.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +13,8 @@ const Login = ({ onLogin }) => {
 
   return (
     <form className="mt-3" onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className="mb-3 text-center">
+        <h3 className="mb-4 logo-text">TaskForge</h3>
         <input
           type="text"
           value={username}
@@ -33,12 +34,13 @@ const Login = ({ onLogin }) => {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-primary">
+        Login
+      </button>
       <div className="mt-3 text-center">
-            Don't have an account? <Link to="/register">Register</Link>
-          </div>
+        Don't have an account? <Link to="/register">Register</Link>
+      </div>
     </form>
-    
   );
 };
 

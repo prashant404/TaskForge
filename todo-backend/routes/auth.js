@@ -90,4 +90,33 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// @route   POST /api/auth/logout
+// @desc    Logout user
+// @access  Private
+router.post('/logout', (req, res) => {
+  try {
+    // Check if token exists in request headers
+    const token = req.header('Authorization');
+    if (!token) {
+      return res.status(401).json({ msg: 'No token, authorization denied' });
+    }
+
+    // Verify and decode token
+    jwt.verify(token, config.get('jwtSecret'), (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ msg: 'Token is not valid' });
+      } else {
+        // Token is valid, user is authenticated
+        // You can perform any additional checks here if needed
+        // For simplicity, we'll just send a success message
+        return res.json({ msg: 'Logout successful' });
+      }
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+
 module.exports = router;

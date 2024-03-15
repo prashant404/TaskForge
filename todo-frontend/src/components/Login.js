@@ -1,50 +1,44 @@
 // Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        username,
-        password,
-      });
-      console.log("Log in successfull")
-      console.log(response.data); // handle successful login
-    } catch (error) {
-      console.error('Login failed:', error.response.data.msg); // handle login error
-    }
+    onLogin(username, password);
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form className="mt-3" onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          className="form-control"
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          className="form-control"
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">Login</button>
+      <div className="mt-3 text-center">
+            Don't have an account? <Link to="/register">Register</Link>
+          </div>
+    </form>
+    
   );
 };
 

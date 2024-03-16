@@ -4,6 +4,7 @@ import Login from "../components/Login";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleLogin = async (username, password) => {
     try {
@@ -15,6 +16,8 @@ const LoginPage = () => {
         }
       );
       console.log(response.data); // handle successful login
+      setSuccessMessage("Login successful");
+      setTimeout(() => setSuccessMessage(""), 3000); // Clear success message after 3 seconds
     } catch (error) {
       if (error.response) {
         setError(error.response.data.msg); // handle login error
@@ -32,6 +35,11 @@ const LoginPage = () => {
       {error && (
         <div className="alert alert-danger mt-3" role="alert">
           {error}
+        </div>
+      )}
+      {successMessage && (
+        <div className="alert alert-success mt-3" role="alert">
+          {successMessage}
         </div>
       )}
     </div>

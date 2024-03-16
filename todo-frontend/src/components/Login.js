@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -37,6 +36,9 @@ const Login = ({ onLogin }) => {
       <button type="submit" className="btn btn-primary">
         Login
       </button>
+      <div className="mt-3 text-center">
+        <Link to="/forgot-password">Forgot Password?</Link>
+      </div>
       <div className="mt-3 text-center">
         Don't have an account? <Link to="/register">Register</Link>
       </div>

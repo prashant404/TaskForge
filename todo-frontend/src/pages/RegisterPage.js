@@ -1,3 +1,4 @@
+// RegisterForm.js
 import React, { useState } from "react";
 import { Card, Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ const RegisterForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    email: ""
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -27,6 +29,7 @@ const RegisterForm = () => {
         {
           username: formData.username,
           password: formData.password,
+          email: formData.email
         }
       );
       console.log(response.data); // handle successful registration
@@ -58,6 +61,16 @@ const RegisterForm = () => {
                       placeholder="Enter username"
                       name="username"
                       value={formData.username}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      name="email"
+                      value={formData.email}
                       onChange={handleChange}
                     />
                   </Form.Group>

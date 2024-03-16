@@ -5,6 +5,7 @@ import axios from "axios";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); // Added email state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ const Register = () => {
         {
           username,
           password,
+          email // Pass email to the backend
         }
       );
       console.log(response.data); // handle successful registration
@@ -30,6 +32,16 @@ const Register = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
+          className="form-control"
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} // Added email input field
+          placeholder="Email"
           className="form-control"
           required
         />

@@ -1,8 +1,6 @@
-// RegisterForm.js
 import React, { useState } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +8,7 @@ const RegisterForm = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,30 +20,28 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        {
-          username: formData.username,
-          password: formData.password,
-        }
-      );
-      console.log(response.data); // handle successful registration
-    } catch (error) {
-      console.error("Registration failed:", error.response.data.msg); // handle registration error
-      setError("Registration failed: " + error.response.data.msg); // Update error state to display error message
+    const { username, password } = formData;
+    // Perform form validation here
+    if (!username || !password) {
+      setError("All fields are required");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000); // Hide error message after 3 seconds
+      return;
     }
+
+    // If form is valid, submit the data
+    console.log("Form submitted:", formData);
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="w-50">
+      <div className="w-100 w-md-75 w-lg-50"> {/* Adjust width here */}
         <Card className="p-4">
           <Card.Body>
             <h3 className="mb-4 logo-text text-center">TaskForge</h3>
             <h2 className="text-center mb-4">Register</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
+              {/* Your registration form fields */}
               <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
@@ -55,6 +52,7 @@ const RegisterForm = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
+       
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -74,6 +72,11 @@ const RegisterForm = () => {
                 Back to Login
               </Link>
             </div>
+            {showError && (
+              <div className="mt-3 text-center">
+                <Alert variant="danger">{error}</Alert>
+              </div>
+            )}
           </Card.Body>
         </Card>
       </div>

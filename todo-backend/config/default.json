@@ -1,0 +1,4 @@
+{
+    "jwtSecret": "secret_key123",
+    "mongoURI": "mongodb+srv://pkr214204:z4MCTLFj4J4pEx1N@clustertodo.a3mngrl.mongodb.net/?retryWrites=true&w=majority&appName=ClusterTodo"
+}

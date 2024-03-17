@@ -34,14 +34,17 @@ const RegisterForm = () => {
       );
       console.log(response.data); // handle successful registration
       setSuccessMessage("You are registered! Always remember the password for future use.");
-      setTimeout(() => setSuccessMessage(""), 5000); // Clear success message after 5 seconds
+      // Clear form data
+      setFormData({
+        username: "",
+        password: "",
+        email: ""
+      });
     } catch (error) {
       console.error("Registration failed:", error.response.data.msg); // handle registration error
       setError("Registration failed: " + error.response.data.msg); // Update error state to display error message
-      setTimeout(() => setError(""), 3000); // Clear error message after 3 seconds
     }
   };
-
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <Container>

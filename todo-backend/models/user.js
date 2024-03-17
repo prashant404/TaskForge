@@ -1,3 +1,4 @@
+// models/user.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -6,17 +7,20 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  password: {
-    type: String,
-    required: true
-  },
   email: {
     type: String,
     required: true,
     unique: true
   },
+  password: {
+    type: String,
+    required: true
+  },
   passwordResetOTP: {
     type: String
+  },
+  passwordResetTimestamp: {
+    type: Date
   }
 });
 

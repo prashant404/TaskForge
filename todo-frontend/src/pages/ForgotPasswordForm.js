@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,6 +9,29 @@ const ForgotPasswordForm = () => {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [otpExpiration, setOtpExpiration] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [expiredMessage, setExpiredMessage] = useState("");
+
+  useEffect(() => {
+    if (otpExpiration > 0) {
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const timeDifference = otpExpiration - now;
+
+        if (timeDifference > 0) {
+          setTimeLeft(timeDifference);
+        } else {
+          setTimeLeft(0);
+          setError("");
+          setSuccessMessage("");
+          setExpiredMessage("OTP has expired. Please resend OTP.");
+        }
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [otpExpiration]);
 
   const sendOTP = async () => {
     try {
@@ -18,6 +41,9 @@ const ForgotPasswordForm = () => {
       );
       setSuccessMessage(response.data.msg);
       setError("");
+      setOtpExpiration(Date.now() + 60000); // Set expiration to 1 minute from now
+      setTimeLeft(60000); // Set initial time left to 1 minute
+      setExpiredMessage(""); // Clear expired message
     } catch (err) {
       setError(err.response.data.msg);
       setSuccessMessage("");
@@ -32,6 +58,11 @@ const ForgotPasswordForm = () => {
       );
       setSuccessMessage(response.data.msg);
       setError("");
+      setEmail("");
+      setOtp("");
+      setNewPassword("");
+      setOtpExpiration(0); // Stop the timer
+      setTimeLeft(0);
     } catch (err) {
       setError(err.response.data.msg);
       setSuccessMessage("");
@@ -45,6 +76,7 @@ const ForgotPasswordForm = () => {
           <h2 className="text-center mb-4">Forgot Password</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {successMessage && <Alert variant="success">{successMessage}</Alert>}
+          {expiredMessage && <Alert variant="warning">{expiredMessage}</Alert>}
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -79,6 +111,12 @@ const ForgotPasswordForm = () => {
             <Button variant="primary" onClick={resetPassword} className="w-100 mb-3">
               Reset Password
             </Button>
+            {timeLeft > 0 && (
+              <p className="text-center mb-0">Time left: {Math.ceil(timeLeft / 1000)} seconds</p>
+            )}
+            {timeLeft === 0 && successMessage && (
+              <p className="text-center mb-0">Password reset successfully!</p>
+            )}
           </Form>
           <div className="mt-3 text-center">
             <Link to="/" className="btn btn-secondary">

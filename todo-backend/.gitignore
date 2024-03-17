@@ -1,2 +1,2 @@
 node_modules/
-.env                 # Add this if using .env files
+# .env                 # Add this if using .env files

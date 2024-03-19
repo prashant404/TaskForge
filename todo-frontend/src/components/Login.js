@@ -14,6 +14,7 @@ const Login = ({ onLogin }) => {
     <form className="mt-3" onSubmit={handleSubmit}>
       <div className="mb-3 text-center">
         <h3 className="mb-4 logo-text">TaskForge</h3>
+        <p className="logo-text">Your tasks at one place</p>
         <input
           type="text"
           value={username}

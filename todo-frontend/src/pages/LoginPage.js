@@ -1,10 +1,13 @@
+// LoginPage.js
 import React, { useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 import Login from "../components/Login";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
 
   const handleLogin = async (username, password) => {
     try {
@@ -18,6 +21,8 @@ const LoginPage = () => {
       console.log(response.data); // handle successful login
       setSuccessMessage("Login successful");
       setTimeout(() => setSuccessMessage(""), 3000); // Clear success message after 3 seconds
+      setIsLoggedIn(true); // Set authentication status to true upon successful login
+      localStorage.setItem("token", response.data.token); // Store token in localStorage
     } catch (error) {
       if (error.response) {
         setError(error.response.data.msg); // handle login error
@@ -28,6 +33,11 @@ const LoginPage = () => {
       }
     }
   };
+
+  // If user is authenticated, redirect to the main task page
+  if (isLoggedIn) {
+    return <Redirect to="/tasks" />;
+  }
 
   return (
     <div className="d-flex flex-column align-items-center vh-100 justify-content-center">

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Task Schema
 const TaskSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -7,16 +8,16 @@ const TaskSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
+    required: false
   },
   dueDate: {
     type: Date,
-    default: null
+    default: null // Set default value to null
   },
   priority: {
     type: String,
     enum: ['Low', 'Medium', 'High'],
-    default: 'Medium'
+    default: 'Medium' // Set default priority
   },
   completed: {
     type: Boolean,
@@ -35,12 +36,13 @@ const TaskSchema = new mongoose.Schema({
   workspace: {
     type: String,
     enum: ['personal', 'team'],
-    required: true
+    required: false
   },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
+
 
 module.exports = mongoose.model('Task', TaskSchema);

@@ -6,20 +6,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background-image: url('./assets/cool-background.svg');
-  background-size: cover; /* Adjust background size as needed */
+  background-image: url('./assets/Bg.jpg');
+  background-size:auto; 
   background-repeat: no-repeat; /* Prevent background from repeating */
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: #fff;
 }
 
 /* Adjust background for smaller screens */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   body {
-    background-size: contain; /* Adjust background size for smaller screens */
+    background-size: contain; 
   }
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -33,4 +34,149 @@ code {
 }
 .p {
   padding: 0.5rem !important;
+}
+
+/* styles.css */
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.hero-section {
+  /* background-color: #f4f4f4; */
+  padding: 100px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-section h1 {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+/* Style for TaskList component */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.task-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #000; /* Set th text color to black */
+}
+
+.task-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #fff; /* Set td text color to white */
+}
+
+
+.task-table th {
+  background-color: #f2f2f2;
+  
+}
+
+/* Style for TaskForm component */
+.task-form {
+  max-width: 400px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.task-form .form-group {
+  margin-bottom: 15px;
+}
+
+.task-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.task-form input[type="text"],
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.task-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.task-form button:hover {
+  background-color: #45a049;
+}
+
+
+.Headings{
+    font-size: calc(1.325rem + .9vw);
+    color: #fff;
 }

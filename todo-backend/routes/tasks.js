@@ -18,7 +18,6 @@ router.get('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
 // @route   POST /api/tasks
 // @desc    Create a task
 // @access  Private
@@ -27,6 +26,7 @@ router.post('/', auth, async (req, res) => {
 
   try {
     let task;
+
     if (workspace === 'personal') {
       task = new Task({
         title,
@@ -60,11 +60,12 @@ router.post('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-// @route   PUT /api/tasks/:id
-// @desc    Update a personal task
-// @access  Private
+
+
+// Update the PUT endpoint to handle taskData object
 router.put('/:id', auth, async (req, res) => {
   const { title, description, dueDate, priority, completed } = req.body;
+  const taskData = { title, description, dueDate, priority, completed };
 
   try {
     let task = await Task.findById(req.params.id);
@@ -73,18 +74,11 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'Task not found' });
     }
 
-    // Ensure user owns the task
     if (task.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    // Update task fields
-    task.title = title;
-    task.description = description;
-    task.dueDate = dueDate;
-    task.priority = priority;
-    task.completed = completed;
-
+    Object.assign(task, taskData); // Merge taskData with task object
     await task.save();
 
     res.json(task);
@@ -93,6 +87,8 @@ router.put('/:id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// routes/tasks.js
 
 // @route   DELETE /api/tasks/:id
 // @desc    Delete a personal task
@@ -110,7 +106,7 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    await task.remove();
+    await task.deleteOne(); // Replace remove() with deleteOne()
 
     res.json({ msg: 'Task removed' });
   } catch (err) {

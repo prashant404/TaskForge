@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 // Define allowed origins based on environment
-const allowedOrigins = ['http://localhost:3000', 'https://task-forge-nu.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://task-forge-nu.vercel.app','http://localhost:5000'];
 
 // Configure CORS
 const corsOptions = {

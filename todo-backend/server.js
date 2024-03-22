@@ -3,25 +3,14 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+
 dotenv.config();
+
 
 const app = express();
 
-// CORS configuration
-const allowedOrigins = ["https://task-forge-onmg.vercel.app"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ["POST", "PUT", "GET"],
-  credentials: true
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection

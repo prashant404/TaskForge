@@ -20,7 +20,7 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get("https://task-forge-api.vercel.app/api/tasks", config);
+      const response = await axios.get("http://localhost:5000/api/tasks", config);
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);

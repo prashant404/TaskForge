@@ -8,10 +8,19 @@ const nodemailer = require("nodemailer");
 const User = require("../models/user");
 require("dotenv").config();
 
+// Function to set CORS headers
+const setCorsHeaders = (res) => {
+  res.header("Access-Control-Allow-Origin", "https://task-forge-frontend.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
+  res.header("Access-Control-Allow-Credentials", true);
+};
+
 // @route   POST /api/auth/register
 // @desc    Register user
 // @access  Public
 router.post("/register", async (req, res) => {
+  setCorsHeaders(res); // Set CORS headers
+
   const { username, password, email } = req.body;
 
   try {
@@ -57,6 +66,8 @@ router.post("/register", async (req, res) => {
 // @desc    Authenticate user & get token
 // @access  Public
 router.post("/login", async (req, res) => {
+  setCorsHeaders(res); // Set CORS headers
+
   const { username, password } = req.body;
 
   try {
@@ -97,6 +108,8 @@ router.post("/login", async (req, res) => {
 // @desc    Send OTP for password reset
 // @access  Public
 router.post("/forgot-password", async (req, res) => {
+  setCorsHeaders(res); // Set CORS headers
+
   const { email } = req.body;
 
   try {
@@ -142,6 +155,8 @@ router.post("/forgot-password", async (req, res) => {
 // @desc    Reset password
 // @access  Public
 router.post("/reset-password", async (req, res) => {
+  setCorsHeaders(res); // Set CORS headers
+
   const { email, otp, newPassword } = req.body;
 
   try {

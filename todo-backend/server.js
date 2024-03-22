@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors(
   {
-    origin:[""],
+    origin:["https://task-forge-frontend.vercel.app"],
     methods:["GET","POST","PUT"],
     credentials:true,
   }

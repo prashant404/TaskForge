@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card, Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { baseURL } from "../utils/url"; 
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${baseURL}/api/auth/register`,
         {
           username: formData.username,
           password: formData.password,

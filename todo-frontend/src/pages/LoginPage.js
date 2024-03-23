@@ -1,8 +1,8 @@
-// LoginPage.js
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Login from "../components/Login";
+import { baseURL } from "../utils/url"; // Import the baseURL constant from urls.js
 
 const LoginPage = () => {
   const [error, setError] = useState("");
@@ -12,7 +12,7 @@ const LoginPage = () => {
   const handleLogin = async (username, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${baseURL}/api/auth/login`, // Use the baseURL to construct the full URL
         {
           username,
           password,

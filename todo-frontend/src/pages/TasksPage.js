@@ -3,6 +3,7 @@ import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { baseURL } from "../utils/url"; // Import the baseURL constant from urls.js
 
 const TasksPage = ({ history }) => {
   const [tasks, setTasks] = useState([]);
@@ -20,12 +21,13 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get("http://localhost:5000/api/tasks", config);
+      const response = await axios.get(`${baseURL}/api/tasks`, config); // Use the baseURL to construct the full URL
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
   };
+
   const addTask = async (taskData) => {
     try {
       const token = localStorage.getItem("token");
@@ -34,13 +36,12 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.post("http://localhost:5000/api/tasks", { ...taskData, workspace: 'personal' }, config);
+      const response = await axios.post(`${baseURL}/api/tasks`, { ...taskData, workspace: 'personal' }, config); // Use the baseURL to construct the full URL
       setTasks([...tasks, response.data]);
     } catch (error) {
       console.error("Error adding task:", error);
     }
   };
-  
 
   const editTask = (task) => {
     setTaskToEdit(task);
@@ -54,7 +55,7 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      await axios.put(`http://localhost:5000/api/tasks/${taskId}`, taskData, config);
+      await axios.put(`${baseURL}/api/tasks/${taskId}`, taskData, config); // Use the baseURL to construct the full URL
       const updatedTasks = tasks.map((task) =>
         task._id === taskId ? { ...task, ...taskData } : task
       );
@@ -73,7 +74,7 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, config);
+      await axios.delete(`${baseURL}/api/tasks/${taskId}`, config); // Use the baseURL to construct the full URL
       const filteredTasks = tasks.filter((task) => task._id !== taskId);
       setTasks(filteredTasks);
     } catch (error) {

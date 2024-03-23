@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { baseURL } from "../utils/url"; // Import the baseURL constant from urls.js
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ const ForgotPasswordForm = () => {
   const sendOTP = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        `${baseURL}/api/auth/forgot-password`, // Use the baseURL to construct the full URL
         { email }
       );
       setSuccessMessage(response.data.msg);
@@ -53,7 +54,7 @@ const ForgotPasswordForm = () => {
   const resetPassword = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/reset-password",
+        `${baseURL}/api/auth/reset-password`, // Use the baseURL to construct the full URL
         { email, otp, newPassword }
       );
       setSuccessMessage(response.data.msg);

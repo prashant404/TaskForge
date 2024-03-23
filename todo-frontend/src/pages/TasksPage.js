@@ -8,7 +8,7 @@ import { baseURL } from "../utils/url"; // Import the baseURL constant from urls
 const TasksPage = ({ history }) => {
   const [tasks, setTasks] = useState([]);
   const [taskToEdit, setTaskToEdit] = useState(null);
-
+  const [sortBy, setSortBy] = useState(""); // Define sortBy state
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -26,6 +26,10 @@ const TasksPage = ({ history }) => {
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
+  };
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value); // Update sortBy state when sorting option changes
   };
 
   const addTask = async (taskData) => {
@@ -91,6 +95,11 @@ const TasksPage = ({ history }) => {
     <div>
       <Navbar logout={logout} />
       <div>
+        <select value={sortBy} onChange={handleSortChange}>
+          <option value="">Sort By</option>
+          <option value="priority">Priority</option>
+          <option value="dateAdded">Date Added</option>
+        </select>
         <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
         <TaskForm addTask={addTask} updateTask={updateTask} taskToEdit={taskToEdit} />
       </div>

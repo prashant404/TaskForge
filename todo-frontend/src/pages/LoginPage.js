@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// LoginPage.js
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Login from "../components/Login";
@@ -8,6 +9,13 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on component mount
 
   const handleLogin = async (username, password) => {
     try {

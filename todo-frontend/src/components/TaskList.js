@@ -1,7 +1,10 @@
-// TaskList.js
 import React from "react";
 
-const TaskList = ({ tasks, editTask, deleteTask }) => {
+const TaskList = ({ tasks, editTask, deleteTask, toggleTaskStatus }) => {
+  const handleToggleStatus = (taskId) => {
+    toggleTaskStatus(taskId);
+  };
+
   return (
     <div>
       <h2 className="Headings">Task List</h2>
@@ -12,6 +15,7 @@ const TaskList = ({ tasks, editTask, deleteTask }) => {
             <th>Description</th>
             <th>Due Date</th>
             <th>Priority</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -22,9 +26,13 @@ const TaskList = ({ tasks, editTask, deleteTask }) => {
               <td>{task.description}</td>
               <td>{task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "Not set"}</td>
               <td>{task.priority}</td>
+              <td>{task.completed ? "Completed" : "Pending"}</td>
               <td>
                 <button onClick={() => editTask(task)}>Edit</button>
                 <button onClick={() => deleteTask(task._id)}>Delete</button>
+                <button onClick={() => handleToggleStatus(task._id)}>
+                  {task.completed ? "Mark as Pending" : "Mark as Complete"}
+                </button>
               </td>
             </tr>
           ))}

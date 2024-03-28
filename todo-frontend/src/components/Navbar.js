@@ -1,16 +1,23 @@
-// Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
-const Navbar = ({ logout }) => {
+const CustomNavbar = ({ logout }) => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/tasks">Tasks</Link></li>
-        <li><Link to="/" onClick={logout}>Logout</Link></li>
-      </ul>
-    </nav>
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand as={Link} to="/" className="logo">TaskForge</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link onClick={logout}>Logout</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;

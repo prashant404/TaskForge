@@ -1,29 +1,31 @@
 // Homepage.js
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 
 const Homepage = () => {
   return (
     <div className="homepage">
-      <header>
-        <nav className="navbar">
-          <div className="container">
-            <Link to="/" className="logo">
-              TaskForge
-            </Link>
-            <ul className="nav-links">
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
-              <li><Link to="/forgot-password">Forgot Password</Link></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar.Brand as={Link} to="/" className="logo">TaskForge</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+          </Nav>
+          <Nav>
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            <Nav.Link as={Link} to="/register">Register</Nav.Link>
+            <Nav.Link as={Link} to="/forgot-password">Forgot Password</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <div className="hero-section">
         <div className="container">
           <h1>Welcome to TaskForge</h1>
           <p>Your ultimate task management solution</p>
-          <Link to="/register" className="btn btn-primary">Get Started</Link>
+          <Button as={Link} to="/register" variant="primary">Get Started</Button>
         </div>
       </div>
     </div>

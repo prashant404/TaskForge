@@ -6,6 +6,8 @@ import ForgotPasswordForm from "./pages/ForgotPasswordForm";
 import HomePage from "./pages/HomePage";
 import TasksPage from "./pages/TasksPage";
 import PrivateRoute from "./components/PrivateRoute";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   return (

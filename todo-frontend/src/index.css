@@ -6,13 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background-image: url('./assets/Bg.jpg');
   background-size:auto; 
   background-repeat: no-repeat; /* Prevent background from repeating */
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #fff;
+  color: #000; /* Set font color to black */
 }
 
 /* Adjust background for smaller screens */
@@ -62,7 +61,7 @@ header {
 .logo {
   font-size: 1.5rem;
   text-decoration: none;
-  color: #fff;
+  color: #000; /* Set font color to black */
 }
 
 .nav-links {
@@ -78,14 +77,14 @@ header {
 
 .nav-links li a {
   text-decoration: none;
-  color: #fff;
+  color: #000; /* Set font color to black */
 }
 
 .hero-section {
   /* background-color: #f4f4f4; */
   padding: 100px 0;
   text-align: center;
-  color: #fff;
+  color: #000; /* Set font color to black */
 }
 
 .hero-section h1 {
@@ -111,42 +110,32 @@ header {
   border-collapse: collapse;
 }
 
-.task-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  color: #000; /* Set th text color to black */
-}
-
+.task-table th,
 .task-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
   text-align: left;
-  color: #fff; /* Set td text color to white */
+  color: #000; /* Set font color to black */
 }
-
 
 .task-table th {
   background-color: #f2f2f2;
-  
 }
 
 /* Style for TaskForm component */
 .task-form {
   max-width: 400px;
   margin: 0 auto;
-  color: #fff;
 }
 
 .task-form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .task-form label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #fff;
 }
 
 .task-form input[type="text"],
@@ -158,7 +147,6 @@ header {
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 5px;
-  margin-bottom: 10px;
 }
 
 .task-form button {
@@ -175,8 +163,15 @@ header {
   background-color: #45a049;
 }
 
+.Headings {
+  font-size: calc(1.325rem + .9vw);
+  color: #000; /* Set font color to black */
+}
 
-.Headings{
-    font-size: calc(1.325rem + .9vw);
-    color: #fff;
+/* Add these styles to your existing CSS */
+
+/* Adjust table and form margins */
+.task-table,
+.task-form {
+  margin-top: 20px;
 }

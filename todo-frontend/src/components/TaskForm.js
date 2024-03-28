@@ -31,7 +31,7 @@ const TaskForm = ({ addTask, updateTask, taskToEdit }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2 className="Headings">{taskToEdit ? "Edit Task" : "Add Task"}</h2>
       <form onSubmit={handleSubmit} className="task-form">
         <div className="form-group">

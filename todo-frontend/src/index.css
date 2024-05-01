@@ -33,6 +33,7 @@ code {
 }
 .p {
   padding: 0.5rem !important;
+  font-size: smaller;
 }
 
 /* styles.css */
@@ -85,10 +86,11 @@ header {
   padding: 100px 0;
   text-align: center;
   color: #000; /* Set font color to black */
+  margin-top : -80px;
 }
 
 .hero-section h1 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .btn {

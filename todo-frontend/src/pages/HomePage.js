@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
+import Lottie from "lottie-react";
+import animationData from "../assets/animate.json"
 
 const Homepage = () => {
   return (
@@ -26,6 +28,7 @@ const Homepage = () => {
           <h1>Welcome to TaskForge</h1>
           <p>Your ultimate task management solution</p>
           <Button as={Link} to="/register" variant="primary">Get Started</Button>
+          <Lottie animationData = {animationData} />
         </div>
       </div>
     </div>

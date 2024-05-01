@@ -30,7 +30,10 @@ const TasksPage = ({ history }) => {
       } else {
         sortParam = "dateAdded";
       }
-      const response = await axios.get(`${baseURL}/api/tasks?sortBy=${sortParam}`, config);
+      const response = await axios.get(
+        `${baseURL}/api/tasks?sortBy=${sortParam}`,
+        config
+      );
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -49,7 +52,11 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.post(`${baseURL}/api/tasks`, { ...taskData, workspace: 'personal' }, config);
+      const response = await axios.post(
+        `${baseURL}/api/tasks`,
+        { ...taskData, workspace: "personal" },
+        config
+      );
       setTasks([...tasks, response.data]);
     } catch (error) {
       console.error("Error adding task:", error);
@@ -87,19 +94,19 @@ const TasksPage = ({ history }) => {
           Authorization: `Bearer ${token}`,
         },
       };
-  
+
       const taskToUpdate = tasks.find((task) => task._id === taskId);
       const newStatus = !taskToUpdate.completed;
-  
+
       const response = await axios.put(
         `${baseURL}/api/tasks/${taskId}/status`,
         { completed: newStatus },
         config
       );
-  
+
       // Assuming the response contains the updated task with the toggled status
       const updatedTask = response.data;
-  
+
       // Update the tasks array with the updated task
       const updatedTasks = tasks.map((task) =>
         task._id === updatedTask._id ? updatedTask : task
@@ -140,8 +147,17 @@ const TasksPage = ({ history }) => {
           <option value="priorityLow">Priority Low to High</option>
           <option value="dateAdded">Date Added</option>
         </select>
-        <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} toggleTaskStatus={toggleTaskStatus} />
-        <TaskForm addTask={addTask} updateTask={updateTask} taskToEdit={taskToEdit} />
+        <TaskList
+          tasks={tasks}
+          editTask={editTask}
+          deleteTask={deleteTask}
+          toggleTaskStatus={toggleTaskStatus}
+        />
+        <TaskForm
+          addTask={addTask}
+          updateTask={updateTask}
+          taskToEdit={taskToEdit}
+        />
       </div>
     </div>
   );

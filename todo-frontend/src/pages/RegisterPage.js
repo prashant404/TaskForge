@@ -4,6 +4,8 @@ import { Card, Form, Button, Alert, Container, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../utils/url"; 
+import Lottie from "lottie-react";
+import animationData from "../assets/registeranimation.json"
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -53,6 +55,7 @@ const RegisterForm = () => {
           <Col xs={12} md={8} lg={6}>
             <Card className="p-4" style={{ maxWidth: "30rem" }}>
               <Card.Body>
+              <Lottie animationData = {animationData} />
                 <h3 className="mb-4 logo-text text-center">TaskForge</h3>
                 <h2 className="text-center mb-4">Register</h2>
                 {error && <Alert variant="danger">{error}</Alert>}

@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Angkor&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background-size:auto; 
+  background-size: auto;
   background-repeat: no-repeat; /* Prevent background from repeating */
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -86,7 +86,7 @@ header {
   padding: 100px 0;
   text-align: center;
   color: #000; /* Set font color to black */
-  margin-top : -80px;
+  margin-top: -80px;
 }
 
 .hero-section h1 {
@@ -166,7 +166,7 @@ header {
 }
 
 .Headings {
-  font-size: calc(1.325rem + .9vw);
+  font-size: calc(1.325rem + 0.9vw);
   color: #000; /* Set font color to black */
 }
 
